@@ -3,6 +3,7 @@ import { Component } from "@angular/core";
 interface Game {
     title: string,
     price: number,
+    img: string
 }
 
 @Component({
@@ -13,8 +14,12 @@ interface Game {
 })
 export class GameComponent {
     games: Game[] = [
-        { title: 'Minecraft', price: 10 },
-        { title: 'Candy Crush', price: 0 },
-        { title: 'Counter Strike', price: 120 },
+        { title: 'Minecraft', price: 10, img: 'https://cdn.pixabay.com/photo/2013/07/12/19/25/minecraft-154749__480.png' },
+        { title: 'Candy Crush', price: 0, img: 'https://apkmagic.com.ar/wp-content/uploads/2019/05/Candy-Crush-Saga-v1.150.1.2-Mod-APK.png' },
+        { title: 'Counter Strike', price: 120 , img: 'https://gameday.bg/wp-content/uploads/2021/01/counter-strike-global-offensive-bezplatna-01.jpg'},
     ]
+
+    handleExpandContentClick() :void{
+        alert('Expand clicked!');
+    }
 }

@@ -5,5 +5,13 @@
         <span *ngIf="game.price > 50">
             Price: {{game.price}}
         </span>
+
+        <span>
+            <img [src]="game.img" alt="" width="100px">
+        </span>
     </li>
 </ul>
+
+<button (click)="handleExpandContentClick()">
+    Expand Content
+</button>
