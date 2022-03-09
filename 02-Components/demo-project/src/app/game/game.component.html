@@ -1,3 +1,7 @@
+<!-- <input type="text" [value]="'Game 1'" (change)="handleSearchChange($event)" placeholder="Search for a game"> -->
+<input type="text" [(ngModel)]="searchText" placeholder="Search for a game">
+Searched value: {{ searchText }}
+
 <ul #gamesContainer>
     <!-- for( let game of games ) -->
     <li *ngFor="let game of games">

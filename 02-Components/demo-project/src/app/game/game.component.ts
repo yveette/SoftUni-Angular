@@ -15,6 +15,8 @@ interface Game {
 export class GameComponent {
     shouldPriceByRed: boolean = false;
 
+    searchText: string = 'Game';
+
     games: Game[] = [
         { title: 'Minecraft', price: 10, img: 'https://cdn.pixabay.com/photo/2013/07/12/19/25/minecraft-154749__480.png' },
         { title: 'Candy Crush', price: 0, img: 'https://apkmagic.com.ar/wp-content/uploads/2019/05/Candy-Crush-Saga-v1.150.1.2-Mod-APK.png' },
@@ -26,5 +28,9 @@ export class GameComponent {
         // this.shouldPriceByRed = !this.shouldPriceByRed;
 
         console.log(gamesContainer.children);
+    }
+
+    handleSearchChange(event: Event){
+        console.log(event)
     }
 }
