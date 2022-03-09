@@ -14,7 +14,7 @@ interface Game {
 })
 export class GameComponent {
     shouldPriceByRed: boolean = false;
-
+    shouldShowGameItemComponent:boolean  = false;
     searchText: string = 'Game';
 
     games: Game[] = [
@@ -32,5 +32,9 @@ export class GameComponent {
 
     handleSearchChange(event: Event){
         console.log(event)
+    }
+
+    handleCreateOrDestroyGameItem(): void{
+        this.shouldShowGameItemComponent = !this.shouldShowGameItemComponent;
     }
 }
