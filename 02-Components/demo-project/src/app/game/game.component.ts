@@ -21,8 +21,10 @@ export class GameComponent {
         { title: 'Counter Strike', price: 120 , img: 'https://gameday.bg/wp-content/uploads/2021/01/counter-strike-global-offensive-bezplatna-01.jpg'},
     ]
 
-    handleExpandContentClick() :void{
+    handleExpandContentClick(gamesContainer: HTMLElement) :void{
         this.shouldPriceByRed = this.shouldPriceByRed ? false : true;
         // this.shouldPriceByRed = !this.shouldPriceByRed;
+
+        console.log(gamesContainer.children);
     }
 }

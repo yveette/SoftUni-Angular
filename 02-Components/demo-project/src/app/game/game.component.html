@@ -1,4 +1,4 @@
-<ul>
+<ul #gamesContainer>
     <!-- for( let game of games ) -->
     <li *ngFor="let game of games">
         Game: {{game.title}}
@@ -15,6 +15,10 @@
     </li>
 </ul>
 
-<button (click)="handleExpandContentClick()">
+<div>
+    Total games: {{gamesContainer.children.length}}
+</div>
+
+<button (click)="handleExpandContentClick(gamesContainer)">
     {{shouldPriceByRed ? 'Make Price Dark' : 'Make Price Red'}}
 </button>
