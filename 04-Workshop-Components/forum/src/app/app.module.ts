@@ -7,6 +7,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ThemeListComponent } from './theme-list/theme-list.component';
 import { AsideComponent } from './aside/aside.component';
 import { ThemeListItemComponent } from './theme-list-item/theme-list-item.component';
+import { UserService } from './user.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,9 @@ import { ThemeListItemComponent } from './theme-list-item/theme-list-item.compon
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [
+    UserService
+  ],
   bootstrap: [
     AppComponent,
     HeaderComponent,
