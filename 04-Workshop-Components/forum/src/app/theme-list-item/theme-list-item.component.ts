@@ -1,22 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ITheme } from '../interfaces';
-import { ThemeService } from '../theme.service';
 
 @Component({
   selector: 'app-theme-list-item',
   templateUrl: './theme-list-item.component.html',
   styleUrls: ['./theme-list-item.component.css']
 })
-export class ThemeListItemComponent implements OnInit {
+export class ThemeListComponent implements OnInit {
 
-  themeList!: ITheme[];
+  @Input() theme!: ITheme;
 
-  constructor(private themeService: ThemeService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.themeService.loadThemeList().subscribe(themeList => {
-      this.themeList = themeList;
-    });
   }
 
 }
