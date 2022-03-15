@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ITheme } from '../interfaces';
+import { ThemeService } from '../theme.service';
 
 @Component({
   selector: 'app-theme-list-item',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ThemeListItemComponent implements OnInit {
 
-  constructor() { }
+  themeList!: ITheme[];
+
+  constructor(private themeService: ThemeService) { }
 
   ngOnInit(): void {
+    this.themeService.loadThemeList().subscribe(themeList => {
+      this.themeList = themeList;
+    });
   }
 
 }
