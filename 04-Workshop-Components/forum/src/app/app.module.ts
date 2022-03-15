@@ -8,6 +8,7 @@ import { ThemeListComponent } from './theme-list/theme-list.component';
 import { AsideComponent } from './aside/aside.component';
 import { ThemeListItemComponent } from './theme-list-item/theme-list-item.component';
 import { UserService } from './user.service';
+import { storageServiceProvider } from './storage.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { UserService } from './user.service';
     BrowserModule
   ],
   providers: [
-    UserService
+    UserService,
+    storageServiceProvider
   ],
   bootstrap: [
     AppComponent,
