@@ -11,6 +11,7 @@ import { ThemeListItemComponent } from './theme-list/theme-list.component';
 import { UserService } from './user.service';
 import { storageServiceProvider } from './storage.service';
 import { ThemeService } from './theme.service';
+import { PostService } from './post.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ThemeService } from './theme.service';
   providers: [
     UserService,
     ThemeService,
-    storageServiceProvider
+    storageServiceProvider,
+    PostService
   ],
   bootstrap: [
     AppComponent,
