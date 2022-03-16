@@ -2,8 +2,8 @@
 
     <!-- theme component  -->
     <app-theme-list-item class="theme-container" *ngFor="let theme of themeList" [theme]="theme">
-
     </app-theme-list-item>
+    <div *ngIf="themeList.length === 0">No Themes!</div>
 </div>
 
 <div class="theme-title" *ngIf="!themeList">
