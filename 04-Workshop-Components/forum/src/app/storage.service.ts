@@ -18,7 +18,7 @@ export function strorageFactory(platformId: string): any {
   }
 
   if (isPlatformServer(platformId)) {
-    // return new ServerStorage();
+    return new ServerStorage();
   }
 
   throw new Error('No implementation for this platform: ' + platformId);
@@ -52,15 +52,15 @@ export class BrowserStorage {
   }
 }
 
-/*
 export class ServerStorage {
   localStorage = {
     data: {},
     setItem<T>(key: string, item: T): void {
-      this.data[key] = item;
+      // this.data[key]
+      (this.data as any)[key] = item;
     },
     getItem<T>(key: string): T {
-      return this.data[key] || null;
+      return (this.data as any) || null;
     },
   };
 
@@ -70,7 +70,7 @@ export class ServerStorage {
     return item;
   }
 
-  getItem<T>(key: string): T {
+  getItem<T>(key: string): any {
     let item;
     const tmp = this.localStorage.getItem(key) as any;
     if (!tmp) { return null; }
@@ -83,4 +83,3 @@ export class ServerStorage {
     return item;
   }
 }
-*/
