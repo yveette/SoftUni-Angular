@@ -36,4 +36,8 @@ export class CustomerService {
   getUsers$(): Observable<IUser[]> {
     return this.httpClient.get<IUser[]>('https://jsonplaceholder.typicode.com/users');
   }
+
+  getUserById$(id: string): Observable<IUser> {
+    return this.httpClient.get<IUser>('https://jsonplaceholder.typicode.com/users/' + id)
+  }
 }
