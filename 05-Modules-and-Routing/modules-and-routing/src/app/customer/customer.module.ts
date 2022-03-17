@@ -8,6 +8,9 @@ import { CustomerListComponent } from './customer-list/customer-list.component';
   ],
   imports: [
     CommonModule
+  ],
+  exports:[
+    CustomerListComponent
   ]
 })
 export class CustomerModule { }
