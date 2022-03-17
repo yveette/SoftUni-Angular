@@ -1,4 +1,4 @@
-<div *ngIf="!!customer">
+<div *ngIf="!isLoading; else loadingIndicator">
     <p>
         Name: {{customer.name}}
     </p>
@@ -11,3 +11,7 @@
         Email: {{customer.email}}
     </p>
 </div>
+
+<ng-template #loadingIndicator>
+    Loading...
+</ng-template>
