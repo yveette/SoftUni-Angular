@@ -1,1 +1,4 @@
-<p>{{item.name}}</p>
+<p>
+    {{item.name}}
+    <a [routerLink]="['/user', item.id]"> See Profile </a>
+</p>
