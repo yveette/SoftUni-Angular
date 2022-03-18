@@ -13,6 +13,12 @@
         <p>
             Email: {{customer.email}}
         </p>
+
+        <ul>
+            <li><a [routerLink]="['/user', customer.id, 'posts']">Posts</a></li>
+        </ul>
+
+        <router-outlet></router-outlet>
     </div>
 </div>
 
