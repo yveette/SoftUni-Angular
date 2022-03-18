@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CustomerPostsResolver } from './customer/customer-posts.resolver';
 import { CustomerProfileAlbumsComponent } from './customer/customer-profile-albums/customer-profile-albums.component';
 import { CustomerProfilePostsComponent } from './customer/customer-profile-posts/customer-profile-posts.component';
 import { CustomerProfileComponent } from './customer/customer-profile/customer-profile.component';
@@ -35,6 +36,7 @@ const routes: Routes = [
       {
         // user/:id/posts
         path: 'posts',
+        resolve: { posts: CustomerPostsResolver },
         component: CustomerProfilePostsComponent
       },
       {
