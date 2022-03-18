@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { CustomerService, IAlbum } from '../customer.service';
 
 @Component({
   selector: 'app-customer-profile-albums',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CustomerProfileAlbumsComponent implements OnInit {
 
-  constructor() { }
+  albums: IAlbum[] = [];
+
+  constructor(private customerService: CustomerService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    const id = this.activatedRoute.parent!.snapshot.params['id'];
+    this.customerService.getAlbumsByUserId$(id).subscribe(albums => {
+      this.albums = albums;
+    })
   }
-
 }

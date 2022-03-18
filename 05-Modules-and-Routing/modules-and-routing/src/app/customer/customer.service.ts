@@ -33,6 +33,12 @@ export interface IPost {
   "body": string;
 }
 
+export interface IAlbum {
+  "userId": number;
+  "id": number;
+  "title": string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -52,4 +58,10 @@ export class CustomerService {
     return this.httpClient.get<IPost[]>('https://jsonplaceholder.typicode.com/posts')
       .pipe(map(posts => posts.filter(p => p.userId === +id)))
   }
+
+  getAlbumsByUserId$(id: string): Observable<IAlbum[]> {
+    return this.httpClient.get<IAlbum[]>('https://jsonplaceholder.typicode.com/albums')
+      .pipe(map(albums => albums.filter(a => a.userId === +id)))
+  }
+
 }
