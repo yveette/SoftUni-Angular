@@ -1,1 +1,8 @@
-<p>customer-profile-posts works!</p>
+<p>Posts:</p>
+
+<ol>
+    <li *ngFor="let post of posts">
+        {{post.title}}
+        <p>{{post.body}}</p>
+    </li>
+</ol>

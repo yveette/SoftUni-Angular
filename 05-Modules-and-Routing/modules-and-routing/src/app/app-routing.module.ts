@@ -31,6 +31,7 @@ const routes: Routes = [
     component: CustomerProfileComponent,
     children: [
       {
+        // user/:id/posts
         path: 'posts',
         component: CustomerProfilePostsComponent
       },
