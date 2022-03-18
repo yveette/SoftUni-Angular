@@ -9,7 +9,7 @@ import { CustomerService, IUser } from '../customer.service';
   styleUrls: ['./customer-profile.component.css']
 })
 export class CustomerProfileComponent implements OnInit {
-
+  id: number = 0;
   customer!: IUser;
   isLoading: boolean = false;
 
@@ -19,17 +19,25 @@ export class CustomerProfileComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const id = this.activateRoute.snapshot.params['id'];
-    // const id = this.activateRoute.snapshot.paramMap.get('id');
+    this.activateRoute.params.subscribe(params => {
+      this.id = +params['id'];
+      // + parse to number
+      // this.id = +this.activateRoute.snapshot.params['id'];
+      // const id = this.activateRoute.snapshot.paramMap.get('id');
 
-    this.titleServie.setTitle('Profile ' + id);
+      this.titleServie.setTitle('Profile ' + this.id);
 
-    this.isLoading = true;
-    this.customerService.getUserById$(id).subscribe(user => {
-      this.customer = user;
-      this.isLoading = false;
+      this.isLoading = true;
+      this.customerService.getUserById$(this.id.toString()).subscribe({
+        next: user => {
+          this.customer = user;
+          this.isLoading = false;
+        },
+        error: error => {
+          this.isLoading = false;
+          console.error('Error happened', error);
+        }
+      })
     })
-
   }
-
 }
