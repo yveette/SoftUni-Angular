@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { CustomerProfileComponent } from './customer-profile/customer-profile.component';
 import { CustomerProfilePostsComponent } from './customer-profile-posts/customer-profile-posts.component';
 import { CustomerProfileAlbumsComponent } from './customer-profile-albums/customer-profile-albums.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 
 @NgModule({
   declarations: [
@@ -17,9 +18,10 @@ import { CustomerProfileAlbumsComponent } from './customer-profile-albums/custom
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    MatProgressSpinnerModule
   ],
-  exports:[
+  exports: [
     CustomerListComponent
   ]
 })
