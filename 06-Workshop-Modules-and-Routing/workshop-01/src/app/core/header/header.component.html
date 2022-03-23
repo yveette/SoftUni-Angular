@@ -14,8 +14,14 @@
       </ul>
     </div>
     <div class="mini-navbar" *ngIf="isLogged">
-      <div>HELLO, [username]@localdomain.com</div>
-      <a (click)="logoutHandler()">Logout</a>
+      <ul>
+        <li>
+          <a href="#">John's Profile</a>
+        </li>
+        <li>
+          <a href="#" (click)="logoutHandler()">Logout</a>
+        </li>
+      </ul>
     </div>
   </div>
   <nav>
