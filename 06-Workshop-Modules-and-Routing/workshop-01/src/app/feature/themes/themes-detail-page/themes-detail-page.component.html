@@ -1,3 +1,7 @@
+<div *ngIf="!isLoggedIn" class="container">
+    <app-welcome></app-welcome>
+</div>
+
 <div *ngIf="!!theme; else loadingIndicator" class="theme-content">
     <!-- theme-title  -->
     <div class="theme-title">
@@ -29,14 +33,13 @@
             </div>
         </div>
         <div class="footer">
-            <!-- <i class="fas fa-thumbs-up"></i>
-            <i class="fas fa-thumbs-down"></i> -->
+            <i *ngIf="isLoggedIn && canLike(comment)" class="fas fa-thumbs-up"></i>
+            <i *ngIf="isLoggedIn && !canLike(comment)" class="fas fa-thumbs-down"></i>
             <p><span>{{comment.likes.length}}</span> likes</p>
         </div>
     </div>
 
-    <!-- TODO -->
-    <div class="answer-comment">
+    <div *ngIf="isLoggedIn" class="answer-comment">
         <p><span>currentUser</span> comment:</p>
         <div class="answer">
             <form>
