@@ -7,6 +7,7 @@ import { PostListComponent } from './post-list/post-list.component';
 import { ThemesPageComponent } from './themes-page/themes-page.component';
 import { ThemesRoutingModule } from './themes-routing.module';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ThemesDetailPageComponent } from './themes-detail-page/themes-detail-page.component';
 
 
 
@@ -16,7 +17,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
     AsideComponent,
     ThemeListItemComponent,
     PostListComponent,
-    ThemesPageComponent
+    ThemesPageComponent,
+    ThemesDetailPageComponent
   ],
   imports: [
     CommonModule,
