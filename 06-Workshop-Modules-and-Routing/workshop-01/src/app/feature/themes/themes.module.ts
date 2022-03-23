@@ -4,6 +4,9 @@ import { ThemeListComponent } from './theme-list/theme-list.component';
 import { AsideComponent } from './aside/aside.component';
 import { ThemeListItemComponent } from './theme-list-item/theme-list-item.component';
 import { PostListComponent } from './post-list/post-list.component';
+import { ThemesPageComponent } from './themes-page/themes-page.component';
+import { ThemesRoutingModule } from './themes-routing.module';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
@@ -12,10 +15,13 @@ import { PostListComponent } from './post-list/post-list.component';
     ThemeListComponent,
     AsideComponent,
     ThemeListItemComponent,
-    PostListComponent
+    PostListComponent,
+    ThemesPageComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    SharedModule,
+    ThemesRoutingModule,
   ],
   exports:[
   ]
