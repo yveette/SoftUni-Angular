@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
 import { HomePageComponent } from './feature/pages/home-page/home-page.component';
 import { PagesModule } from './feature/pages/pages.module';
 import { AppRoutingModule } from './app-routing.module';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -19,11 +20,12 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserModule,
     HttpClientModule,
+    RouterModule,
     CoreModule.forRoot(),
     AppRoutingModule,
     ThemesModule,
-    RouterModule,
-    PagesModule
+    PagesModule,
+    AuthModule,
   ],
   providers: [
 
