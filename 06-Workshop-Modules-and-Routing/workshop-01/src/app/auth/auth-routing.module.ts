@@ -8,6 +8,10 @@ const routes: Routes = [
         path: 'register',
         component: RegisterComponent,
     },
+    {
+        path: 'login',
+        component: LoginComponent,
+    },
 ]
 
 export const AuthRoutingModule = RouterModule.forChild(routes);
