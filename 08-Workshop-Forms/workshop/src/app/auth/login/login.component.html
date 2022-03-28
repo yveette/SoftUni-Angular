@@ -8,20 +8,21 @@
             <input formControlName="email" type="email" name="email" id="email" placeholder="john.doe@gmail.com">
         </p>
         <ng-container *ngIf="loginFormGroup.controls['email'].touched && loginFormGroup.controls['email'].invalid">
-            <p class="error">
+            <p *ngIf="loginFormGroup.controls['email'].errors.required" class="error">
                 Email is required!
             </p>
+            <p *ngIf="!loginFormGroup.controls['email'].errors.required && loginFormGroup.controls['email'].errors.email" class="error">
+                Email is not valid!
+            </p>
         </ng-container>
-        <!-- <p class="error">
-            Email is not valid!
-        </p> -->
 
         <p class="field field-icon">
             <label for="password"><span><i class="fas fa-lock"></i></span></label>
             <input formControlName="password" type="password" name="password" id="password" placeholder="******">
         </p>
         <ng-container *ngIf="loginFormGroup.controls['password'].touched && loginFormGroup.controls['password'].invalid">
-            {{loginFormGroup.controls['password'].errors | json}}
+            <!-- Check what is the error and choose what to show -->
+            <!-- {{loginFormGroup.controls['password'].errors | json}} -->
             <p *ngIf="loginFormGroup.controls['password'].errors.required" class="error">
                 Password is required!
             </p>
@@ -30,7 +31,7 @@
             </p>
         </ng-container>
 
-        <button (click)="loginHandler()">Login</button>
+        <button [disabled]="loginFormGroup.invalid">Login</button>
 
         <p class="text-center">
             Have an account?
