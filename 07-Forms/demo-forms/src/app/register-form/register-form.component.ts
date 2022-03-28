@@ -23,10 +23,27 @@ export class RegisterFormComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     // console.log(this.registration.value);
+    console.log(this.registration.invalid);
   }
 
-  onSubmit(): void{
+  onSubmit(): void {
+    if (this.registration.value.password != this.registration.value.rePass) {
+      console.log(`passwords don't match`);
+    }
     console.log(this.registration.value);
+  }
 
+  clearForm(): void {
+    // form.patchValue -> change part of the form
+    this.registration.form.setValue({
+      'username': '',
+      'email': '',
+      'tel': '',
+      'building': '',
+      'password': '',
+      're-password': ''
+    })
+    this.registration.form.markAllAsTouched();
+    // this.registration.reset();
   }
 }

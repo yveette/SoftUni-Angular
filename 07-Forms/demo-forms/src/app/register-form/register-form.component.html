@@ -5,47 +5,65 @@
 
         <p class="field field-icon">
             <label for="username"><span><i class="fas fa-user"></i></span></label>
-            <input type="text" name="username" ngModel id="username" class="error" placeholder="Mark Ulrich">
+            <input #username="ngModel" type="text" name="username" ngModel required minlength="3" id="username"
+                class="error" placeholder="Mark Ulrich">
         </p>
 
         <!-- if error -->
-        <p class="error">
-            Message for Error
-        </p>
+        <ng-container *ngIf="username.touched && username.invalid">
+            <!-- {{username.errors | json}} -->
+            <p *ngIf="username.errors?.['required']" class="error">
+                Username is required!
+            </p>
+
+            <p *ngIf="username.errors?.['minlength']" class="error">
+                Username must be at least 3 characters!
+            </p>
+        </ng-container>
         <!-- end if error -->
 
         <p class="field field-icon">
             <label for="email"><span><i class="fas fa-envelope"></i></span></label>
-            <input type="text" name="email" ngModel id="email" placeholder="marк@gmial.com">
+            <input #email="ngModel" type="text" name="email" ngModel required id="email" class="error"
+                placeholder="marк@gmial.com">
         </p>
+
+        <!-- if error -->
+        <ng-container *ngIf="email.touched && email.invalid">
+            <!-- {{username.errors | json}} -->
+            <p *ngIf="email.errors?.['required']" class="error">
+                Email is required!
+            </p>
+        </ng-container>
 
         <p class="field field-icon">
             <label for="tel"><span><i class="fas fa-phone"></i></span></label>
-            <select name="tel" ngModel id="tel" class="tel">
-                <option value="1">+359</option>
+            <select name="tel-code" id="tel-code" class="tel">
+                <option value="+359">+359</option>
             </select>
-            <input type="text" name="tel" ngModel id="tel" placeholder="888 888">
+            <input type="text" name="tel" ngModel required id="tel" placeholder="888 888" class="error">
         </p>
 
         <p class="field field-icon">
             <label for="building"><span><i class="fas fa-building"></i></span></label>
-            <select name="building" ngModel id="building" class="building">
-                <option *ngFor="let building of buildings" [value]="building">{{building}}</option>
+            <select name="building" ngModel required id="building" class="building">
+                <option *ngFor="let building of buildings" [value]="building" >{{building}}</option>
             </select>
         </p>
 
         <p class="field field-icon">
             <label for="password"><span><i class="fas fa-lock"></i></span></label>
-            <input type="password" name="password" ngModel id="password" placeholder="******">
+            <input type="password" name="password" ngModel required id="password" placeholder="******" class="error">
         </p>
 
         <p class="field field-icon">
-            <label for="re-password"><span><i class="fas fa-lock"></i></span></label>
-            <input type="re-password" name="re-password" ngModel id="re-password" placeholder="******">
+            <label for="rePass"><span><i class="fas fa-lock"></i></span></label>
+            <input type="password" name="rePass" ngModel required id="rePass" placeholder="******" class="error">
         </p>
 
         <p>
-            <button>Create Account</button>
+            <button [disabled]="registration.invalid" type="submit">Create Account</button>
+            <button type="button" (click)="clearForm()" id="clearBtn">Clear Form</button>
         </p>
 
         <p class="text-center">
