@@ -23,12 +23,16 @@ select {
 }
 
 button {
-    background-color: #d41872;
+    background-color: #00990d;
     color: white;
     border: none;
     border-radius: 3px;
     padding: 0.8em 1.2em;
     width: 100%;
+}
+
+button:disabled{
+    background-color: #a8929d;
 }
 
 i {
@@ -79,4 +83,16 @@ p.error {
 
 input.error {
     border-left-color:#a8413f;
+}
+
+input.ng-valid {
+    border-left: 5px solid #42A948; /* green */
+  }
+  
+input.ng-invalid.ng-touched {
+    border-left: 5px solid #A94442; /* red */
+}
+  
+#clearBtn{
+    background-color: rgb(231, 44, 44);
 }
