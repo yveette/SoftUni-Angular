@@ -1,29 +1,34 @@
-<form class="login" action="" method="post">
+<form class="login" [formGroup]="loginFormGroup">
 
     <fieldset>
         <h2>Login Form</h2>
 
         <p class="field field-icon">
             <label for="email"><span><i class="fas fa-envelope"></i></span></label>
-            <input class="input-error" type="email" name="email" id="email" placeholder="john.doe@gmail.com">
+            <input formControlName="email" type="email" name="email" id="email" placeholder="john.doe@gmail.com">
         </p>
-        <p class="error">
-            Email is required!
-        </p>
+        <ng-container *ngIf="loginFormGroup.controls['email'].touched && loginFormGroup.controls['email'].invalid">
+            <p class="error">
+                Email is required!
+            </p>
+        </ng-container>
         <!-- <p class="error">
             Email is not valid!
         </p> -->
 
         <p class="field field-icon">
             <label for="password"><span><i class="fas fa-lock"></i></span></label>
-            <input type="password" name="password" id="password" placeholder="******">
+            <input formControlName="password" type="password" name="password" id="password" placeholder="******">
         </p>
-        <!-- <p class="error">
-            Password is required!
-        </p>
-        <p class="error">
-            Password must be at least 4 characters!
-        </p> -->
+        <ng-container *ngIf="loginFormGroup.controls['password'].touched && loginFormGroup.controls['password'].invalid">
+            {{loginFormGroup.controls['password'].errors | json}}
+            <p *ngIf="loginFormGroup.controls['password'].errors.required" class="error">
+                Password is required!
+            </p>
+            <p *ngIf="loginFormGroup.controls['password'].errors.minlength" class="error">
+                Password must be at least 5 characters!
+            </p>
+        </ng-container>
 
         <button (click)="loginHandler()">Login</button>
 
