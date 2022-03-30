@@ -19,14 +19,15 @@
     </ng-container>
 
     <ng-container *ngIf="isInEditMode">
-        <form #editProfileForm="ngForm">
+        <form #editProfileForm="ngForm" (ngSubmit)="updateProfile()">
             <div class="flex">
                 <p>Username: </p>
                 <input type="text" name="username" ngModel required minlength="5" id="username" value="Johny">
             </div>
             <div class="flex">
                 <p>Email: </p>
-                <input type="email" name="email" id="email" ngModel required value="john.doe@gmail.com">
+                <input #email="ngModel" [class.input-error]="email.touched && email.invalid" type="email" name="email"
+                    id="email" ngModel required emailValidator value="john.doe@gmail.com">
             </div>
             <div class="flex">
                 <p>Phone: </p>
@@ -38,7 +39,7 @@
                 </div>
             </div>
             <button type="button" (click)="isInEditMode = false" class="red-button">Cancel</button>
-            <button class="green-button">Save</button>
+            <button [disabled]="editProfileForm.invalid" class="green-button">Save</button>
         </form>
     </ng-container>
 
