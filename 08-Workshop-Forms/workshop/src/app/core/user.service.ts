@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { IUser } from './interfaces';
 import { StorageService } from './storage.service';
@@ -12,20 +13,35 @@ export interface CreateUserDto {
 @Injectable()
 export class UserService {
 
-  isLogged = false;
+  currentUser: IUser;
 
-  constructor(private storage: StorageService, private httpClient: HttpClient) {
-    this.isLogged = this.storage.getItem('isLogged');
+  get isLogged() {
+    return !!this.currentUser;
   }
 
-  login(): void {
-    this.isLogged = true;
-    this.storage.setItem('isLogged', true);
+  constructor(private storage: StorageService, private httpClient: HttpClient) {
+    console.log('UserService#constructor');
+  }
+
+  login$(userData: { email: string, password: string }): Observable<IUser> {
+    return this.httpClient
+      .post<IUser>(`${environment.apiUrl}/login`, userData, { withCredentials: true })
+      .pipe(tap(user => this.currentUser = user))
+
+    // Get all response with data
+    /*
+    return this.httpClient
+      .post<IUser>(`${environment.apiUrl}/login`, userData, { withCredentials: true, observe: 'response' })
+      .pipe(
+        tap(response => console.log(response)),
+        map(response => response.body),
+        tap(user => this.currentUser = user)
+      )
+    */
   }
 
   logout(): void {
-    this.isLogged = false;
-    this.storage.setItem('isLogged', false);
+
   }
 
   register$(userData: CreateUserDto): Observable<IUser> {

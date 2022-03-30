@@ -11,6 +11,8 @@ import { emailValidator } from '../util';
 })
 export class LoginComponent implements OnInit {
 
+  errorMessage: string = '';
+
   loginFormGroup: FormGroup = this.formBuilder.group({
     // TODO: validate email
     'email': new FormControl('', [Validators.required, emailValidator]),
@@ -27,8 +29,26 @@ export class LoginComponent implements OnInit {
 
   loginHandler(): void {
     // TODO validate user's data
-    this.userService.login();
-    this.router.navigate(['/home']);
+    // this.userService.login();
+    // this.router.navigate(['/home']);
+
+    console.log('form is submitted', this.loginFormGroup);
   }
 
+  handleLogin(): void {
+    this.errorMessage = '';
+    this.userService.login$(this.loginFormGroup.value).subscribe({
+      next: user => {
+        console.log(user);
+        this.router.navigate(['/home']);
+      },
+      complete: () => {
+        console.log('login stream completed');
+      },
+      error: (err) => {
+        console.log(err.error.message)
+        this.errorMessage = err.error.message;
+      }
+    });
+  }
 }

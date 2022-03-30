@@ -1,7 +1,9 @@
-<form class="login" [formGroup]="loginFormGroup">
+<form class="login" [formGroup]="loginFormGroup" (ngSubmit)="handleLogin()">
 
     <fieldset>
         <h2>Login Form</h2>
+
+        <p *ngIf="errorMessage" class="error">{{errorMessage}}</p>
 
         <p class="field field-icon">
             <label for="email"><span><i class="fas fa-envelope"></i></span></label>

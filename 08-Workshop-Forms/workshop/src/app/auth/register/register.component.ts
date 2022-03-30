@@ -52,7 +52,6 @@ export class RegisterComponent implements OnInit {
     }
 
     // send body to Back-end
-    console.log(body)
     this.userService.register$(body).subscribe(() => {
       this.router.navigate(['/home']);
     })
