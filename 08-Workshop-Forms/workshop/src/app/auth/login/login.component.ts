@@ -39,14 +39,14 @@ export class LoginComponent implements OnInit {
     this.errorMessage = '';
     this.userService.login$(this.loginFormGroup.value).subscribe({
       next: user => {
-        console.log(user);
+        // console.log(user);
         this.router.navigate(['/home']);
       },
       complete: () => {
-        console.log('login stream completed');
+        // console.log('login stream completed');
       },
       error: (err) => {
-        console.log(err.error.message)
+        // console.log(err.error.message)
         this.errorMessage = err.error.message;
       }
     });
