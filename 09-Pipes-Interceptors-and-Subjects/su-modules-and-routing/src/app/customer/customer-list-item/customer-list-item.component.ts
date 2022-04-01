@@ -7,6 +7,7 @@ import { IUser } from '../customer.service';
   styleUrls: ['./customer-list-item.component.css']
 })
 export class CustomerListItemComponent implements OnInit {
+  date = new Date();
 
   @Input() item!: IUser;
 

@@ -1,4 +1,11 @@
-<p>
-    {{item.name}} 
+<div>
+    <div>
+        <!-- fullDate -->
+        {{date | date: 'mm/dd/yyyy'}}
+    </div>
+    <div>
+        <!-- uppercase, lowercase, titlecase -->
+        {{item.name | uppercase}}
+    </div>
     <a [routerLink]="['/customer', item.id]"> See Profile</a>
-</p>
+</div>
