@@ -5,7 +5,8 @@
     </div>
     <div>
         <!-- uppercase, lowercase, titlecase -->
-        {{item.name | shorten}}
+        <!-- shorten:15:add:remove.... -->
+        {{item.name | shorten:7 | uppercase}}
     </div>
     <a [routerLink]="['/customer', item.id]"> See Profile</a>
 </div>
