@@ -8,5 +8,8 @@
         <!-- shorten:15:add:remove.... -->
         {{item.name | shorten:7 | uppercase}}
     </div>
+    <div>
+        {{item | myJson}}
+    </div>
     <a [routerLink]="['/customer', item.id]"> See Profile</a>
 </div>
