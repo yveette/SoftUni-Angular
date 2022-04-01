@@ -15,7 +15,7 @@ export class CustomerListItemComponent implements OnInit {
 
   ngOnInit(): void {
     setTimeout(() => {
-      console.log('Special customer');
+      // console.log('Special customer');
       // don't work because of memorization by reference:
       // this.item.email: 'special-customer-email@abg.bg';
       // solution destroy and write:
