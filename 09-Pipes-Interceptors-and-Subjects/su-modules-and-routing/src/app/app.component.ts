@@ -1,4 +1,5 @@
-import { Component, Injectable } from '@angular/core';
+import { Component, Inject, Injectable } from '@angular/core';
+import { ENGINE_TOKEN } from './app.module';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,11 @@ import { Component, Injectable } from '@angular/core';
 })
 export class AppComponent {
   title = 'su-modules-and-routing';
+
+  // add only needed providers with same token
+  constructor (@Inject(ENGINE_TOKEN) private engine: Engine[]){
+    console.log(this.engine)
+  }
 }
 
 

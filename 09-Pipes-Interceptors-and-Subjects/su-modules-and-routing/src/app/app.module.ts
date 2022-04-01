@@ -1,9 +1,9 @@
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { InjectionToken, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { AppComponent, DieselEngine, Engine, PetrolEngine } from './app.component';
 import { CoreModule } from './core/core.module';
 import { CustomerModule } from './customer/customer.module';
 import { HomeComponent } from './pages/home/home.component';
@@ -13,6 +13,8 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './pages/login/login.component';
 import { CustomForms } from './custom-forms/custom-forms.module';
+
+export const ENGINE_TOKEN = new InjectionToken('Services for engine');
 
 @NgModule({
   declarations: [
@@ -32,7 +34,18 @@ import { CustomForms } from './custom-forms/custom-forms.module';
     CustomForms,
     CustomerModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: ENGINE_TOKEN,
+      useClass: PetrolEngine,
+      multi: true
+    },
+    {
+      provide: ENGINE_TOKEN,
+      useClass: DieselEngine,
+      multi: true // makes array of providers, if false -> overwrite
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
