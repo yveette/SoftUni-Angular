@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { CustomerService, IUser } from '../customer.service';
 
 @Component({
@@ -15,18 +15,23 @@ export class CustomerListComponent implements OnInit, OnDestroy {
     }, 3000)
   })
 
+  customers$!: Observable<IUser[]>;
+
   customers: IUser[] = [];
-  private subscription!: Subscription;
+
+  // private subscription!: Subscription;
 
   constructor(private customerService: CustomerService) { }
 
   ngOnInit(): void {
-    this.subscription = this.customerService.getUsers$().subscribe(users => {
-      this.customers = users;
-    })
+    // this.subscription = this.customerService.getUsers$().subscribe(users => {
+    //   this.customers = users;
+    // })
+
+    this.customers$ = this.customerService.getUsers$();
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    // this.subscription.unsubscribe();
   }
 }
