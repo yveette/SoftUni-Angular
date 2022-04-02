@@ -1,14 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
   private activeUsers!: Promise<number>;
+
+  private activeUsers$!: Observable<number>;
+
+  private subscribtion!: Subscription;
 
   constructor(private titleService: Title) { }
 
@@ -46,19 +51,61 @@ export class HomeComponent implements OnInit {
     // })
 
     this.activeUsers = new Promise<number>((resolve) => {
-      // setInterval(() => {
-        setTimeout(() => {
-          const activeUsers = Math.round(Math.random() * 100);
+      // Problem 3: Promises do not work with streams.
+      //   setInterval(() => {
+      setTimeout(() => {
+        const activeUsers = Math.round(Math.random() * 100);
 
-          console.log('resolve', activeUsers);
-          resolve(activeUsers);
-        }, 2000)
-      // }, 4000);
+        console.log('resolve', activeUsers);
+        resolve(activeUsers);
+      }, 2000)
+      //   }, 4000);
     });
 
-    this.activeUsers
-      .then(activeUsers => {
-        console.log('activeUsers', activeUsers);
-      });
+    // // Problem 1: Promises are executed immediately.
+    // this.activeUsers
+    //   .then(activeUsers => {
+    //     console.log('activeUsers', activeUsers);
+    //   });
+
+    this.subscribtion = new Observable((observer) => {
+      let timer: any;
+      const intervalTimer = setInterval(() => {
+        timer = setTimeout(() => {
+          const activeUsers = Math.round(Math.random() * 100);
+
+          console.log('next', activeUsers);
+          observer.next(activeUsers);
+          // observer.error();
+          // observer.complete();
+        }, 2000);
+      }, 4000);
+
+      return () => {
+        console.log('cleanup on time');
+        clearTimeout(timer);
+        clearTimeout(intervalTimer);
+      }
+    }).subscribe(activeUsers => {
+      console.log('activeUsers$', activeUsers);
+    })
+    // .subscribe({
+    //  // for new data:
+    //   next: activeUsers => {
+    //     console.log('activeUsers$', activeUsers);
+    //   },
+    //   complete: () => {
+
+    //   },
+    //   error: (err) => {
+    //     console.log()
+    //   }
+    // })
+  }
+
+  ngOnDestroy(): void {
+    // Problem 2: Promises cannnot be canceled.
+    console.log('No longer in need of active users!');
+    this.subscribtion.unsubscribe();
   }
 }
