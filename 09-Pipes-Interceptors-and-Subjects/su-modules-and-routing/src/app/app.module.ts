@@ -31,8 +31,7 @@ export const ENGINE_TOKEN = new InjectionToken('Services for engine');
     AppRoutingModule,
     CoreModule,
     BrowserAnimationsModule,
-    CustomForms,
-    CustomerModule,
+    CustomForms
   ],
   providers: [
     {
