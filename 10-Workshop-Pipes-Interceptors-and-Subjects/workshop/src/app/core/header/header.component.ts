@@ -13,17 +13,35 @@ import { IUser } from '../interfaces';
 export class HeaderComponent {
 
   currentUser$: Observable<IUser> = this.authService.currentUser$;
-  isLoggedIn$: Observable<boolean> = this.authService.isLoggedIn;
+  isLoggedIn$: Observable<boolean> = this.authService.isLoggedIn$;
+
+  private isLoggingOut: boolean = false;
 
   constructor(public authService: AuthService, private router: Router) {
 
   }
 
   logoutHandler(): void {
-    // TODO: disable logout to be clicked more than once
-    // console.log('logout called');
-    this.authService.logout$().subscribe(() => {
-      this.router.navigate(['/home']);
+    if (this.isLoggingOut) {
+      return;
+    }
+
+    this.isLoggingOut = true;
+    console.log('logout called');
+
+    this.authService.logout$().subscribe({
+      // Http -> return response and then complete
+      // next: args => {
+      //   console.log(args);
+      // },
+      complete: () => {
+        this.isLoggingOut = false;
+        this.router.navigate(['/home']);
+      },
+      error: () => {
+        this.isLoggingOut = false;
+        // handle error
+      }
     })
   }
 }

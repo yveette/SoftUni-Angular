@@ -13,7 +13,7 @@ export class AuthService {
   private _currentUser = new BehaviorSubject<IUser>(undefined);
 
   currentUser$ = this._currentUser.asObservable();
-  isLoggedIn = this.currentUser$.pipe(map(user => !!user));
+  isLoggedIn$ = this.currentUser$.pipe(map(user => !!user));
 
   constructor(private httpClient: HttpClient) {
   }

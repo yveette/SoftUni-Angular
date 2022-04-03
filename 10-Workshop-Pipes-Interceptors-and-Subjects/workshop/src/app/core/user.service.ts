@@ -13,12 +13,6 @@ export interface CreateUserDto {
 @Injectable()
 export class UserService {
 
-  currentUser: IUser;
-
-  get isLogged() {
-    return !!this.currentUser;
-  }
-
   constructor(private storage: StorageService, private httpClient: HttpClient) {
     // console.log('UserService#constructor');
   }
@@ -26,7 +20,6 @@ export class UserService {
   getProfile$(): Observable<IUser> {
     return this.httpClient.get<IUser>(`${environment.apiUrl}/users/profile`, { withCredentials: true })
       .pipe(
-        tap(user => this.currentUser = user)
       )
   }
 }
