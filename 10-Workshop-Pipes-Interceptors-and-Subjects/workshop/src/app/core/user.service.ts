@@ -20,24 +20,7 @@ export class UserService {
   }
 
   constructor(private storage: StorageService, private httpClient: HttpClient) {
-    console.log('UserService#constructor');
-  }
-
-  login$(userData: { email: string, password: string }): Observable<IUser> {
-    return this.httpClient
-      .post<IUser>(`${environment.apiUrl}/login`, userData, { withCredentials: true })
-      .pipe(tap(user => this.currentUser = user))
-
-    // Get all response with data
-    /*
-    return this.httpClient
-      .post<IUser>(`${environment.apiUrl}/login`, userData, { withCredentials: true, observe: 'response' })
-      .pipe(
-        tap(response => console.log(response)),
-        map(response => response.body),
-        tap(user => this.currentUser = user)
-      )
-    */
+    // console.log('UserService#constructor');
   }
 
   getProfile$(): Observable<IUser> {
@@ -45,13 +28,5 @@ export class UserService {
       .pipe(
         tap(user => this.currentUser = user)
       )
-  }
-
-  logout(): void {
-
-  }
-
-  register$(userData: CreateUserDto): Observable<IUser> {
-    return this.httpClient.post<IUser>(`${environment.apiUrl}/register`, userData, { withCredentials: true });
   }
 }

@@ -3,7 +3,7 @@
     <div class="logo-wrap">
       <p class="logo"><span class="logo">SoftUni Forum</span></p>
     </div>
-    <div class="mini-navbar" *ngIf="!isLogged">
+    <div class="mini-navbar" *ngIf="!(isLoggedIn$ | async)">
       <ul>
         <li>
           <a routerLink="/login">Login</a>
@@ -13,13 +13,13 @@
         </li>
       </ul>
     </div>
-    <div class="mini-navbar" *ngIf="isLogged">
+    <div class="mini-navbar" *ngIf="(isLoggedIn$ | async)">
       <ul>
         <li>
-          <a routerLink="/profile">{{currentUser.username}}'s profile</a>
+          <a routerLink="/profile">{{(currentUser$ | async).username}}'s profile</a>
         </li>
         <li>
-          <a href="#" (click)="logoutHandler()">Logout</a>
+          <a href="javascript:void(0)" (click)="logoutHandler()">Logout</a>
         </li>
       </ul>
     </div>

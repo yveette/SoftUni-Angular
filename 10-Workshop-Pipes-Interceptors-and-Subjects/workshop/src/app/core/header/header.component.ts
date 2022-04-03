@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { AuthService } from 'src/app/auth.service';
 import { IUser } from '../interfaces';
-import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-header',
@@ -9,19 +12,18 @@ import { UserService } from '../user.service';
 })
 export class HeaderComponent {
 
-  get isLogged(): boolean {
-    return this.userService.isLogged;
-  }
+  currentUser$: Observable<IUser> = this.authService.currentUser$;
+  isLoggedIn$: Observable<boolean> = this.authService.isLoggedIn;
 
-  get currentUser(): IUser {
-    return this.userService.currentUser;
-  }
-
-  constructor(public userService: UserService) {
+  constructor(public authService: AuthService, private router: Router) {
 
   }
 
   logoutHandler(): void {
-    this.userService.logout();
+    // TODO: disable logout to be clicked more than once
+    // console.log('logout called');
+    this.authService.logout$().subscribe(() => {
+      this.router.navigate(['/home']);
+    })
   }
 }

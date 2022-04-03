@@ -7,6 +7,8 @@ import { ThemeService } from './theme.service';
 import { storageServiceProvider } from './storage.service';
 import { PostService } from './post.service';
 import { RouterModule } from '@angular/router';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,12 @@ export class CoreModule {
         UserService,
         ThemeService,
         storageServiceProvider,
-        PostService
+        PostService,
+        {
+          provide: HTTP_INTERCEPTORS,
+          multi: true,
+          useClass: AuthInterceptor
+        }
       ]
     }
   }
