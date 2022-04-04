@@ -25,7 +25,6 @@ import { AuthModule } from './auth/auth.module';
     AppRoutingModule,
     ThemesModule,
     PagesModule,
-    AuthModule,
   ],
   providers: [
 
