@@ -11,7 +11,8 @@ export class AuthGuard implements CanActivate {
 
   constructor(private authService: AuthService, private router: Router) { }
 
-  canActivate(): Observable<boolean | UrlTree> {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> {
+    console.log(route, state);
     return this.authService.isLoggedIn$.pipe(
       take(1), // or first()
       map(isLoggedIn => {
@@ -19,7 +20,11 @@ export class AuthGuard implements CanActivate {
           return true;
         }
 
-        return this.router.createUrlTree(['/login']);
+        return this.router.createUrlTree(['/login'], {
+          queryParams: {
+            'redirect-to': '/' + route.url.map( f => f.path).join('/')
+          }
+        });
       })
     )
   }

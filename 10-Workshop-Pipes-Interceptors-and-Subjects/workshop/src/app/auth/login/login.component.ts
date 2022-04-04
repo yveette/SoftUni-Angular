@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth.service';
 import { emailValidator } from '../util';
 
@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
+    private activatedRoute: ActivatedRoute,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -40,7 +41,12 @@ export class LoginComponent implements OnInit {
     this.authService.login$(this.loginFormGroup.value).subscribe({
       next: user => {
         // console.log(user);
-        this.router.navigate(['/home']);
+
+        if (this.activatedRoute.snapshot.queryParams['redirect-to']) {
+          this.router.navigateByUrl(this.activatedRoute.snapshot.queryParams['redirect-to']);
+        } else {
+          this.router.navigate(['/home']);
+        }
       },
       complete: () => {
         // console.log('login stream completed');
