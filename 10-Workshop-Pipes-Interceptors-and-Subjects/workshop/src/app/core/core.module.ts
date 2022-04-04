@@ -9,6 +9,7 @@ import { PostService } from './post.service';
 import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth.interceptor';
+import { ErrorHandlerInterceptor } from './error-handler.interceptor';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,11 @@ export class CoreModule {
           provide: HTTP_INTERCEPTORS,
           multi: true,
           useClass: AuthInterceptor
+        },
+        {
+          provide: HTTP_INTERCEPTORS,
+          multi: true,
+          useClass: ErrorHandlerInterceptor
         }
       ]
     }
