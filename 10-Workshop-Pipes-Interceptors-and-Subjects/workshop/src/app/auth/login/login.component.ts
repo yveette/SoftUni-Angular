@@ -44,11 +44,11 @@ export class LoginComponent implements OnInit {
       next: user => {
         // console.log(user);
 
-        if (this.activatedRoute.snapshot.queryParams['redirect-to']) {
-          this.router.navigateByUrl(this.activatedRoute.snapshot.queryParams['redirect-to']);
-        } else {
+        // if (this.activatedRoute.snapshot.queryParams['redirect-to']) {
+        //   this.router.navigateByUrl(this.activatedRoute.snapshot.queryParams['redirect-to']);
+        // } else {
           this.router.navigate(['/home']);
-        }
+        // }
 
         this.messageBus.notifyForMessage({
           text: 'User successfully logged in!',

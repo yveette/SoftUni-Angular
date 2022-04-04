@@ -23,7 +23,6 @@ import { AuthModule } from './auth/auth.module';
     RouterModule,
     CoreModule.forRoot(),
     AppRoutingModule,
-    ThemesModule,
     PagesModule,
   ],
   providers: [
