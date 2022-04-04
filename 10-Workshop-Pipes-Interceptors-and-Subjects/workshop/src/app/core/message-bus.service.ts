@@ -22,4 +22,8 @@ export class MessageBusService {
   notifyForMessage(message: Message) {
     this.messageQue$.next(message);
   }
+
+  clear(): void {
+    this.messageQue$.next(undefined);
+  }
 }
